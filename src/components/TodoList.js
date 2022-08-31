@@ -1,18 +1,35 @@
 import styled from "styled-components";
+import ListInput from "./ListInput";
+import ListFooter from "./ListFooter";
 
 export const HintText = styled.p``;
 
-export const FooterBox = styled.div``;
-
-export const ListItems = styled.div``;
+export const ListItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+`;
 
 export const ThemeIcon = styled.img``;
 
 export const Title = styled.h1``;
 
-export const HeaderBox = styled.div``;
+export const HeaderBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
 
-export const ListBox = styled.div``;
+export const ListBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`;
 
 const TodoList = ({ className }) => {
   return (
@@ -21,8 +38,9 @@ const TodoList = ({ className }) => {
         <Title>TODO</Title>
         <ThemeIcon />
       </HeaderBox>
+      <ListInput />
       <ListItems></ListItems>
-      <FooterBox></FooterBox>
+      <ListFooter />
       <HintText>Drag and drop to reorder list</HintText>
     </ListBox>
   );

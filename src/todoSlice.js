@@ -4,16 +4,7 @@ const todoSlice = createSlice({
   name: "todo",
   initialState: {
     listInput: "",
-    listItems: [
-      {
-        checked: false,
-        text: "Item 1",
-      },
-      {
-        checked: true,
-        text: "Item 2",
-      },
-    ],
+    listItems: [],
   },
   reducers: {
     changeInput: (state, action) => {

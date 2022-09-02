@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import ListFilters from "./ListFilters";
+import { useSelector } from "react-redux";
 
 export const ClearBtn = styled.p`
   color: var(--Dark-Grayish-Blue);
@@ -22,9 +23,21 @@ export const FooterBox = styled.div`
 `;
 
 const ListFooter = ({ className }) => {
+  const listItems = useSelector((state) => state.todo.listItems);
+
+  const countActive = (listItems) => {
+    let count = 0;
+    listItems.forEach((item) => {
+      if (!item.checked) {
+        count++;
+      }
+    });
+    return count;
+  };
+
   return (
     <FooterBox className={className}>
-      <ItemsLeft>5 items left</ItemsLeft>
+      <ItemsLeft>{countActive(listItems)} items left</ItemsLeft>
       <ListFilters />
       <ClearBtn>Clear Completed</ClearBtn>
     </FooterBox>

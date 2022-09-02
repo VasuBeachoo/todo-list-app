@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-export const FilterOption = styled.p``;
+export const FilterOption = styled.p`
+  color: var(--Dark-Grayish-Blue);
+  font-weight: 700;
+`;
 
 export const FiltersBox = styled.div`
   display: flex;

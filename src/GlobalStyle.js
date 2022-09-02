@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
 
 const styled = { createGlobalStyle };
 
@@ -31,6 +31,23 @@ const GlobalStyle = styled.createGlobalStyle`
   body {
     margin: 0;
   }
+`;
+
+export const mixinListItem = css`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.25rem 1.75rem 1.25rem 1.5rem;
+`;
+
+export const mixinItemText = css`
+  color: var(--Very-Dark-Grayish-Blue-1);
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin: 0;
 `;
 
 export default GlobalStyle;

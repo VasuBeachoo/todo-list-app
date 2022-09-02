@@ -8,6 +8,7 @@ const AppContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
+  background-color: var(--Very-Light-Grayish-Blue);
 `;
 
 const App = () => {

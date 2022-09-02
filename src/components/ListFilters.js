@@ -1,8 +1,16 @@
+import { useSelector, useDispatch } from "react-redux";
+import { switchFilter } from "../todoSlice";
 import styled from "styled-components";
 
 export const FilterOption = styled.p`
-  color: var(--Dark-Grayish-Blue);
+  user-select: none;
+  color: ${(props) =>
+    props.active ? "var(--Bright-Blue)" : "var(--Dark-Grayish-Blue)"};
   font-weight: 700;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const FiltersBox = styled.div`
@@ -13,11 +21,21 @@ export const FiltersBox = styled.div`
 `;
 
 const ListFilters = ({ className }) => {
+  const filterOptions = ["All", "Active", "Completed"];
+
+  const dispatch = useDispatch();
+  const selected = useSelector((state) => state.todo.listFilter);
+
   return (
     <FiltersBox className={className}>
-      <FilterOption>All</FilterOption>
-      <FilterOption>Active</FilterOption>
-      <FilterOption>Completed</FilterOption>
+      {filterOptions.map((option) => (
+        <FilterOption
+          active={selected === option}
+          onClick={() => dispatch(switchFilter(option))}
+        >
+          {option}
+        </FilterOption>
+      ))}
     </FiltersBox>
   );
 };

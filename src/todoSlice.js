@@ -5,6 +5,7 @@ const todoSlice = createSlice({
   initialState: {
     listInput: "",
     listItems: [],
+    listFilter: "All",
   },
   reducers: {
     changeInput: (state, action) => {
@@ -23,9 +24,21 @@ const todoSlice = createSlice({
     deleteItem: (state, action) => {
       state.listItems.splice(action.payload, 1);
     },
+    clearCompleted: (state) => {
+      state.listItems = state.listItems.filter((item) => !item.checked);
+    },
+    switchFilter: (state, action) => {
+      state.listFilter = action.payload;
+    },
   },
 });
 
-export const { changeInput, checkItem, addItem, deleteItem } =
-  todoSlice.actions;
+export const {
+  changeInput,
+  checkItem,
+  addItem,
+  deleteItem,
+  clearCompleted,
+  switchFilter,
+} = todoSlice.actions;
 export default todoSlice;

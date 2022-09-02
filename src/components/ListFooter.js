@@ -1,10 +1,16 @@
 import styled from "styled-components";
 import ListFilters from "./ListFilters";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { clearCompleted } from "../todoSlice";
 
 export const ClearBtn = styled.p`
+  user-select: none;
   color: var(--Dark-Grayish-Blue);
   font-weight: 400;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const ItemsLeft = styled.p`
@@ -23,6 +29,8 @@ export const FooterBox = styled.div`
 `;
 
 const ListFooter = ({ className }) => {
+  const dispatch = useDispatch();
+
   const listItems = useSelector((state) => state.todo.listItems);
 
   const countActive = (listItems) => {
@@ -39,7 +47,9 @@ const ListFooter = ({ className }) => {
     <FooterBox className={className}>
       <ItemsLeft>{countActive(listItems)} items left</ItemsLeft>
       <ListFilters />
-      <ClearBtn>Clear Completed</ClearBtn>
+      <ClearBtn onClick={() => dispatch(clearCompleted())}>
+        Clear Completed
+      </ClearBtn>
     </FooterBox>
   );
 };

@@ -47,8 +47,22 @@ export const TodoBox = styled.div`
 
 const TodoList = ({ className }) => {
   const listItems = useSelector((state) => state.todo.listItems);
+  const listFilter = useSelector((state) => state.todo.listFilter);
 
   let itemId = 1000;
+
+  const displayList = (listItems, listFilter) => {
+    switch (listFilter) {
+      case "All":
+        return listItems;
+      case "Active":
+        return listItems.filter((item) => !item.checked);
+      case "Completed":
+        return listItems.filter((item) => item.checked);
+      default:
+        return listItems;
+    }
+  };
 
   return (
     <TodoBox className={className}>
@@ -59,7 +73,7 @@ const TodoList = ({ className }) => {
       <ListInput />
       <ListBox>
         <ListItems>
-          {listItems.map((item, index) => (
+          {displayList(listItems, listFilter).map((item, index) => (
             <ListItem
               key={itemId++}
               id={index}

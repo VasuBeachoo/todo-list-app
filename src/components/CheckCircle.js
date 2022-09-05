@@ -11,6 +11,7 @@ export const CircleBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
   width: 1.85rem;
   height: 1.85rem;
   user-select: none;

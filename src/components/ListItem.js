@@ -9,6 +9,7 @@ export const CloseIcon = styled.img.attrs({
   src: iconCross,
   alt: "icon-cross",
 })`
+  display: none;
   user-select: none;
   margin-left: auto;
 
@@ -19,6 +20,7 @@ export const CloseIcon = styled.img.attrs({
 
 export const ItemText = styled.p`
   ${mixinItemText}
+  hyphens: auto;
   ${(props) =>
     props.checked &&
     css`
@@ -30,6 +32,12 @@ export const ItemText = styled.p`
 export const ItemBox = styled.div`
   ${mixinListItem}
   border-bottom: 0.05rem solid var(--Dark-Grayish-Blue);
+
+  &:hover {
+    ${CloseIcon} {
+      display: block;
+    }
+  }
 `;
 
 const ListItem = ({ className, id, itemText, checked }) => {

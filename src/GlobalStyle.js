@@ -38,7 +38,7 @@ export const mixinListItem = css`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
   width: 100%;
   padding: 1.25rem 1.75rem 1.25rem 1.5rem;
 `;
@@ -47,6 +47,7 @@ export const mixinItemText = css`
   color: var(--Very-Dark-Grayish-Blue-1);
   font-size: 1.25rem;
   font-weight: 400;
+  line-height: 2.25ch;
   margin: 0;
 `;
 

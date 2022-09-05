@@ -6,10 +6,13 @@ export const FilterOption = styled.p`
   user-select: none;
   color: ${(props) =>
     props.active ? "var(--Bright-Blue)" : "var(--Dark-Grayish-Blue)"};
+  font-size: 1.05rem;
   font-weight: 700;
+  transition: 0.25s;
 
   &:hover {
     cursor: pointer;
+    ${(props) => !props.active && "color:var(--Very-Dark-Grayish-Blue)"}
   }
 `;
 
@@ -18,6 +21,7 @@ export const FiltersBox = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 `;
 
 const ListFilters = ({ className }) => {
@@ -26,10 +30,13 @@ const ListFilters = ({ className }) => {
   const dispatch = useDispatch();
   const selected = useSelector((state) => state.todo.listFilter);
 
+  let key = 5000;
+
   return (
     <FiltersBox className={className}>
       {filterOptions.map((option) => (
         <FilterOption
+          key={key++}
           active={selected === option}
           onClick={() => dispatch(switchFilter(option))}
         >

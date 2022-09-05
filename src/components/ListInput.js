@@ -19,6 +19,7 @@ export const TodoInput = styled.input.attrs({
   placeholder: "Create a new todo...",
 })`
   ${mixinItemText}
+  width: 80%;
   border: none;
   outline: none;
   background-color: var(--Very-Light-Gray);
@@ -39,6 +40,7 @@ export const InputBox = styled.div`
   ${mixinListItem}
   background-color: var(--Very-Light-Gray);
   border-radius: 0.3rem;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 `;
 
 const ListInput = ({ className }) => {

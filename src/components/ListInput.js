@@ -7,6 +7,7 @@ import { mixinListItem, mixinItemText } from "../GlobalStyle";
 
 export const AddIcon = styled.img.attrs({ src: iconAdd, alt: "add-icon" })`
   transform: rotate(45deg);
+  filter: brightness(1.5);
   margin-left: auto;
 
   &:hover {
@@ -22,10 +23,10 @@ export const TodoInput = styled.input.attrs({
   width: 80%;
   border: none;
   outline: none;
-  background-color: var(--Very-Light-Gray);
+  background-color: ${(props) => props.theme.itemBg};
 
   &::placeholder {
-    opacity: 0.5;
+    opacity: 0.6;
   }
 `;
 
@@ -38,7 +39,7 @@ export const InputCircle = styled(CheckCircle)`
 
 export const InputBox = styled.div`
   ${mixinListItem}
-  background-color: var(--Very-Light-Gray);
+  background-color: ${(props) => props.theme.itemBg};
   border-radius: 0.3rem;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 `;

@@ -1,12 +1,15 @@
-import { useSelector } from "react-redux";
-import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import styled, { ThemeProvider } from "styled-components";
 import ListInput from "./ListInput";
 import ListItem from "./ListItem";
 import ListFooter from "./ListFooter";
 import ListFilters, { FiltersBox, FilterOption } from "./ListFilters";
+import { switchTheme } from "../todoSlice";
+import iconMoon from "../assets/icon-moon.svg";
+import iconSun from "../assets/icon-sun.svg";
 
 export const HintText = styled.p`
-  color: var(--Dark-Grayish-Blue);
+  color: ${(props) => props.theme.lightTextClr};
   font-size: 1.025rem;
   font-weight: 400;
 `;
@@ -17,7 +20,7 @@ export const MobileFiltersBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: var(--Very-Light-Gray);
+  background-color: ${(props) => props.theme.itemBg};
   border-radius: 0.3rem;
   padding: 0.3rem;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
@@ -44,16 +47,26 @@ export const ListItems = styled.div`
 `;
 
 export const ListBox = styled.div`
-  background-color: var(--Very-Light-Gray);
+  background-color: ${(props) => props.theme.itemBg};
   border-radius: 0.3rem;
   width: 100%;
 `;
 
-export const ThemeIcon = styled.img``;
+export const ThemeIcon = styled.img`
+  width: 2rem;
+  user-select: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 export const Title = styled.h1`
   color: var(--Very-Light-Gray);
+  font-size: 2.5rem;
   font-weight: 700;
+  letter-spacing: 0.55ch;
+  margin-bottom: 1rem;
 `;
 
 export const HeaderBox = styled.div`
@@ -69,49 +82,76 @@ export const TodoBox = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   width: clamp(10rem, 80vw, 40rem);
 `;
 
 const TodoList = ({ className }) => {
+  const dispatch = useDispatch();
+
+  const theme = useSelector((state) => state.todo.theme);
   const listItems = useSelector((state) => state.todo.listItems);
   const listFilter = useSelector((state) => state.todo.listFilter);
 
   let itemId = 1000;
 
+  const themes = {
+    light: {
+      itemBg: "var(--Very-Light-Gray)",
+      lightTextClr: "var(--Dark-Grayish-Blue)",
+      heavyTextClr: "var(--Very-Dark-Grayish-Blue-1)",
+      checkCircleClr: "var(--Light-Grayish-Blue)",
+      checkCircleHoverClr: "var(--Dark-Grayish-Blue)",
+    },
+    dark: {
+      itemBg: "var(--Very-Dark-Desaturated-Blue)",
+      lightTextClr: "var(--Dark-Grayish-Blue-Dark)",
+      heavyTextClr: "var(--Light-Grayish-Blue-Dark)",
+      checkCircleClr: "var(--Very-Dark-Grayish-Blue-2)",
+      checkCircleHoverClr: "var(--Dark-Grayish-Blue-Dark)",
+    },
+  };
+
   return (
-    <TodoBox className={className}>
-      <HeaderBox>
-        <Title>TODO</Title>
-        <ThemeIcon />
-      </HeaderBox>
-      <ListInput />
-      <ListBox>
-        <ListItems>
-          {listItems.map((item, index) => {
-            if (
-              listFilter === "All" ||
-              (listFilter === "Active" && !item.checked) ||
-              (listFilter === "Completed" && item.checked)
-            )
-              return (
-                <ListItem
-                  key={itemId++}
-                  id={index}
-                  itemText={item.text}
-                  checked={item.checked}
-                  filter={listFilter}
-                />
-              );
-          })}
-        </ListItems>
-        <ListFooter />
-      </ListBox>
-      <MobileFiltersBox>
-        <ListFilters />
-      </MobileFiltersBox>
-      <HintText>Drag and drop to reorder list</HintText>
-    </TodoBox>
+    <ThemeProvider theme={theme === "light" ? themes.light : themes.dark}>
+      <TodoBox className={className}>
+        <HeaderBox>
+          <Title>TODO</Title>
+          <ThemeIcon
+            src={theme === "light" ? iconMoon : iconSun}
+            alt={theme === "light" ? "moon-icon" : "sun-icon"}
+            onClick={() => dispatch(switchTheme())}
+          />
+        </HeaderBox>
+        <ListInput />
+        <ListBox>
+          <ListItems>
+            {listItems.map((item, index) => {
+              if (
+                listFilter === "All" ||
+                (listFilter === "Active" && !item.checked) ||
+                (listFilter === "Completed" && item.checked)
+              )
+                return (
+                  <ListItem
+                    key={itemId++}
+                    id={index}
+                    itemText={item.text}
+                    checked={item.checked}
+                    filter={listFilter}
+                  />
+                );
+              else return <></>;
+            })}
+          </ListItems>
+          <ListFooter />
+        </ListBox>
+        <MobileFiltersBox>
+          <ListFilters />
+        </MobileFiltersBox>
+        <HintText>Drag and drop to reorder list</HintText>
+      </TodoBox>
+    </ThemeProvider>
   );
 };
 

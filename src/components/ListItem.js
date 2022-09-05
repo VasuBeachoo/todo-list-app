@@ -11,6 +11,7 @@ export const CloseIcon = styled.img.attrs({
 })`
   display: none;
   user-select: none;
+  filter: brightness(1.5);
   margin-left: auto;
 
   &:hover {

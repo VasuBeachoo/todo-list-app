@@ -15,7 +15,7 @@ export const CircleBox = styled.div`
   width: 1.85rem;
   height: 1.85rem;
   user-select: none;
-  border: 0.1rem solid var(--Very-Light-Grayish-Blue);
+  border: 0.1rem solid ${(props) => props.theme.checkCircleClr};
   border-radius: 100%;
   transition: 0.25s;
   ${(props) =>
@@ -30,7 +30,7 @@ export const CircleBox = styled.div`
 
   &:hover {
     cursor: pointer;
-    border-color: var(--Check-Bg-Violet);
+    border-color: ${(props) => props.theme.checkCircleHoverClr};
   }
 `;
 

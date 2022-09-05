@@ -5,14 +5,14 @@ import styled from "styled-components";
 export const FilterOption = styled.p`
   user-select: none;
   color: ${(props) =>
-    props.active ? "var(--Bright-Blue)" : "var(--Dark-Grayish-Blue)"};
+    props.active ? "var(--Bright-Blue)" : props.theme.lightTextClr};
   font-size: 1.05rem;
   font-weight: 700;
   transition: 0.25s;
 
   &:hover {
     cursor: pointer;
-    ${(props) => !props.active && "color:var(--Very-Dark-Grayish-Blue)"}
+    ${(props) => !props.active && `color: ${props.theme.heavyTextClr}`}
   }
 `;
 
@@ -21,7 +21,7 @@ export const FiltersBox = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
 `;
 
 const ListFilters = ({ className }) => {

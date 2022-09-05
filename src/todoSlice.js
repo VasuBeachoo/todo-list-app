@@ -3,11 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 const todoSlice = createSlice({
   name: "todo",
   initialState: {
+    theme: "light",
     listInput: "",
     listItems: [],
     listFilter: "All",
   },
   reducers: {
+    switchTheme: (state) => {
+      state.theme === "light"
+        ? (state.theme = "dark")
+        : (state.theme = "light");
+    },
     changeInput: (state, action) => {
       state.listInput = action.payload;
     },
@@ -34,6 +40,7 @@ const todoSlice = createSlice({
 });
 
 export const {
+  switchTheme,
   changeInput,
   checkItem,
   addItem,

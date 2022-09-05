@@ -5,19 +5,19 @@ import { clearCompleted } from "../todoSlice";
 
 export const ClearBtn = styled.p`
   user-select: none;
-  color: var(--Dark-Grayish-Blue);
+  color: ${(props) => props.theme.lightTextClr};
   font-size: 1.05rem;
   font-weight: 400;
   transition: 0.25s;
 
   &:hover {
     cursor: pointer;
-    color: var(--Very-Dark-Grayish-Blue);
+    color: ${(props) => props.theme.heavyTextClr};
   }
 `;
 
 export const ItemsLeft = styled.p`
-  color: var(--Dark-Grayish-Blue);
+  color: ${(props) => props.theme.lightTextClr};
   font-size: 1.05rem;
   font-weight: 400;
 `;
@@ -31,7 +31,7 @@ export const FooterBox = styled.div`
   text-align: center;
   width: 100%;
   border-radius: 0.3rem;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
   padding: 0.5rem 1.5rem;
 
   @media (max-width: 700px) {

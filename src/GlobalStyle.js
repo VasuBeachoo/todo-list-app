@@ -44,7 +44,7 @@ export const mixinListItem = css`
 `;
 
 export const mixinItemText = css`
-  color: var(--Very-Dark-Grayish-Blue-1);
+  color: ${(props) => props.theme.heavyTextClr};
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 2.25ch;

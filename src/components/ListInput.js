@@ -33,7 +33,7 @@ export const TodoInput = styled.input.attrs({
 export const InputCircle = styled(CheckCircle)`
   &:hover {
     cursor: auto;
-    border-color: var(--Very-Light-Grayish-Blue);
+    border-color: ${(props) => props.theme.checkCircleClr};
   }
 `;
 

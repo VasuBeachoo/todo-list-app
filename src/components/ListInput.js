@@ -55,6 +55,7 @@ const ListInput = ({ className }) => {
       <TodoInput
         value={input}
         onChange={(e) => dispatch(changeInput(e.target.value))}
+        onKeyDown={(e) => e.key === "Enter" && dispatch(addItem())}
       />
       <AddIcon onClick={() => dispatch(addItem())} />
     </InputBox>

@@ -8,6 +8,7 @@ export const ClearBtn = styled.p`
   color: ${(props) => props.theme.lightTextClr};
   font-size: 1.05rem;
   font-weight: 400;
+  line-height: 2ch;
   transition: 0.25s;
 
   &:hover {
@@ -20,6 +21,7 @@ export const ItemsLeft = styled.p`
   color: ${(props) => props.theme.lightTextClr};
   font-size: 1.05rem;
   font-weight: 400;
+  line-height: 2ch;
 `;
 
 export const FooterBox = styled.div`

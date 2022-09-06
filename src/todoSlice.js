@@ -36,6 +36,9 @@ const todoSlice = createSlice({
     switchFilter: (state, action) => {
       state.listFilter = action.payload;
     },
+    replaceList: (state, action) => {
+      state.listItems = action.payload;
+    },
   },
 });
 
@@ -47,5 +50,6 @@ export const {
   deleteItem,
   clearCompleted,
   switchFilter,
+  replaceList,
 } = todoSlice.actions;
 export default todoSlice;

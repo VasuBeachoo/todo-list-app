@@ -1,10 +1,11 @@
+import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled, { ThemeProvider } from "styled-components";
 import ListInput from "./ListInput";
 import ListItem from "./ListItem";
 import ListFooter from "./ListFooter";
 import ListFilters, { FiltersBox, FilterOption } from "./ListFilters";
-import { switchTheme } from "../todoSlice";
+import { replaceList, switchTheme } from "../todoSlice";
 import iconMoon from "../assets/icon-moon.svg";
 import iconSun from "../assets/icon-sun.svg";
 
@@ -112,6 +113,27 @@ const TodoList = ({ className }) => {
     },
   };
 
+  const dragItem = useRef();
+  const dragOverItem = useRef();
+
+  const dragStart = (e, position) => {
+    dragItem.current = position;
+  };
+
+  const dragEnter = (e, position) => {
+    dragOverItem.current = position;
+  };
+
+  const drop = (e) => {
+    const copyListItems = [...listItems];
+    const dragItemContent = copyListItems[dragItem.current];
+    copyListItems.splice(dragItem.current, 1);
+    copyListItems.splice(dragOverItem.current, 0, dragItemContent);
+    dragItem.current = null;
+    dragOverItem.current = null;
+    dispatch(replaceList(copyListItems));
+  };
+
   return (
     <ThemeProvider theme={theme === "light" ? themes.light : themes.dark}>
       <TodoBox className={className}>
@@ -139,6 +161,9 @@ const TodoList = ({ className }) => {
                     itemText={item.text}
                     checked={item.checked}
                     filter={listFilter}
+                    onDragStart={(e) => dragStart(e, index)}
+                    onDragEnter={(e) => dragEnter(e, index)}
+                    onDragEnd={drop}
                   />
                 );
               else return <></>;

@@ -45,7 +45,7 @@ export const mixinListItem = css`
 
 export const mixinItemText = css`
   color: ${(props) => props.theme.heavyTextClr};
-  font-size: 1.25rem;
+  font-size: clamp(0.5rem, 4.5vw, 1.25rem);
   font-weight: 400;
   line-height: 2.25ch;
   margin: 0;

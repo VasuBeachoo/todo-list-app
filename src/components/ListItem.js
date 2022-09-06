@@ -35,17 +35,37 @@ export const ItemBox = styled.div`
   border-bottom: 0.05rem solid var(--Dark-Grayish-Blue);
 
   &:hover {
+    cursor: grab;
+
     ${CloseIcon} {
       display: block;
     }
   }
+
+  &:active {
+    cursor: grabbing;
+  }
 `;
 
-const ListItem = ({ className, id, itemText, checked }) => {
+const ListItem = ({
+  className,
+  id,
+  itemText,
+  checked,
+  onDragStart,
+  onDragEnter,
+  onDragEnd,
+}) => {
   const dispatch = useDispatch();
 
   return (
-    <ItemBox className={className}>
+    <ItemBox
+      className={className}
+      onDragStart={onDragStart}
+      onDragEnter={onDragEnter}
+      onDragEnd={onDragEnd}
+      draggable
+    >
       <CheckCircle checked={checked} onClick={() => dispatch(checkItem(id))} />
       <ItemText checked={checked}>{itemText}</ItemText>
       <CloseIcon onClick={() => dispatch(deleteItem(id))} />

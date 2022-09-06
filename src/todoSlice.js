@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const todoSlice = createSlice({
   name: "todo",
   initialState: {
-    theme: "light",
+    theme: "dark",
     listInput: "",
     listItems: [],
     listFilter: "All",

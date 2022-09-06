@@ -29,6 +29,7 @@ Users should be able to:
 ### Screenshots
 
 ![](./public/screenshot-dark.png)
+
 ![](./public/screenshot-light.png)
 
 ### Links
